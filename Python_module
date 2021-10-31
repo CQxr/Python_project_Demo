@@ -1,0 +1,129 @@
+#sys模块
+import sys
+'sys.exit("tui")'  #sys模块的exit（）函数的作用是退出当前程序
+print(sys.argv) #argv变量，访问argv变量获取命令行参数列表
+"""
+#sys中exit终止程序
+print("执行_exit()之前")
+try:
+    sys.exit(0)
+    print("执行_exit()之后")
+except:
+    print("程序结束")
+
+"""
+    #sys函数列表
+        # sys.argv 获取命令行参数列表，该列表中的第一个元素是程序自身所在路径
+        # sys.version 获取Python解释器的版本信息
+        # sys.path 获取模块的搜索路径，该变量的初值为环境变量pythonpath的值
+        # sys.platform 返回操作系统平台的名称
+        # sys.exit 退出当前程序。可为该函数传递参数，以设置返回值或退出信息，正常返回值为0
+
+print("=" * 50)
+
+#os模块
+import os
+    #获取当前工作区的路径
+print(os.getcwd())
+
+"""
+#_exit()函数终止程序
+print("执行_exit()之前")
+try:
+    os._exit(0) #程序执行到此os._exit(0)立即结束，不再执行后续代码
+    print("执行_exit()之后")
+except:
+    print("程序结束")
+    
+"""
+
+#chdir（）函数 ‘修改当前工作区路径’
+path = r"D:/prgemFile/Python/Demo01"
+    #查看当前工作目录
+current_path = os.getcwd()
+print(f"修改前工作区目录为{current_path}")
+    #修改当前工作目录
+#os.chdir(path)
+    #os函数列表
+        #os.getcwd() 获取当前工作路径，即当前Python脚本所在的路径
+        #os.chdir() 改变当前脚本的工作路径
+        #os.remove() 删除指定文件
+        #os._exit() 终止程序
+        #os.path.abspath(path) 返回path绝对化路径
+        #os.path.split(path) 将path分隔为形如（目录，文件名）的二元祖并返回
+"""
+
+    os模块和sys模块exit()函数对比: 
+    sys.exit(0)代码没有立即结束。由于try子句中捕获了systemExit异常，因此子句后续代码不再执行，而是继续执行异常处理except子句
+    os._exit(0)执行后程序会立即结束，之后代码不会再执行
+
+"""
+
+
+print("=" * 50)
+
+import random
+"""此模块为随机模块，该模块中定义了多个可产生各种随机数的函数"""
+#random模块函数列表
+   #random.random()  返回(0,1]之间的随机实数
+   #random.randint()   返回(0,1]之间的随机整数
+   #random.choice()   从序列seq中随机返回一个元素
+   #random.unifrom()  返回[x,y]之间的随机浮点数
+
+"""randit()函数。可随机返回指定区间内的一个整数"""
+print(random.randint(1,9))   #随机生成一个1-9之间的整数
+
+"""chioce()函数。可随机返回指定序列中的一个元素"""
+name_li = ["张三","李四","王五","老六"]   #定义一个数组
+print(random.choice(name_li)) #随机输出name_li数组中的一个元素
+
+
+print("=" * 50)
+
+#time模块
+import time
+"""time函数模块提供了一系列处理时间的函数"""
+
+"""time()函数。通过获取当前时间，可利用此特征计算程序的执行时间"""
+before = time.time()
+#计算1000的10000次方
+result = pow(1000,10000)
+after = time.time()
+interval = after-before
+print(f"运行时间为{interval}秒")
+"""
+上述代码导入time模块，使用time（）函数获取了当前的时间
+然后使用pow（）函数计算1000的10000次方,在结果执行时会产生一定的时间
+计算结束后再次使用time()函数获取当前时间，最后计算两个时间的差值，得到程序计算时间。
+"""
+
+"""sleep()函数。sleep函数会让程序进入休眠，具体代码如下"""
+import random,time
+list_one = ["张三","李四","王五","老六"]
+list_two = []
+for i in range(len(list_one)):       #for设置循环次数
+    people = random.choice(list_one)   #随机选择一个元素
+    list_one.remove(people)          #为避免重复出现元素，移除已选择的元素
+    list_two.append(people)          #添加到list_two列表之中
+    time.sleep(1)               #每隔1s执行一次
+    print(f"此时的成员有{list_two}")
+
+
+print("*" * 50)
+
+
+"""strptime()函数与mktime()函数。在程序开发实战中需要自定义时间戳，使用strptime()函数与mktime()函数可以快速生成时间戳"""
+str_di = "2021-11-01 12:10:15"
+time_x = time.strptime(str_di,"%Y-%m-%d %H:%M:%S")    #转换为数组
+timestamp = time.mktime(time_x)                        #转换为时间戳、
+print(timestamp)
+        #time模块函数列表
+            #time.time() 获取当前时间，结果为实数，单位为秒
+            #time.sleep(secs) 进入休眠状态，时长有secs指定，指定单位为秒（s）
+            #time.strptime(string,[,formet]) 将一个时间格式（如 2021-11-01）的字符串解析为时间元祖
+            #time.localtime([secs])  以struct_time类型输出本地时间
+            #time.asctime([tuple])   获取时间字符串，获将时间元祖转换为字符串
+            #time.mktime(tuple)     将时间元祖转换为秒数
+            #strftime(format[,tuple])   返回字符串表示的当地时间,格式由format决定
+
+
